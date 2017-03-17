@@ -1,0 +1,18 @@
+<div class="clearfix">
+    <div ng-show="isAuthenticated() === 'true'">
+        <form ng-submit="post()">
+            <textarea class="form-control" maxLength="200" rows="3" placeholder="Say something" ng-model="newPost.text"></textarea>
+            <input class="btn submit-btn pull-right" type="submit" value="Post">
+        </form>
+    </div>
+
+    <div id="post-stream">
+        <br>
+        <h3>Feed</h3>
+        <div class="post" ng-repeat="post in posts | orderBy: 'created_at':true" ng-class-odd="'odd'" ng-class-even="'even'">
+            <p>{{post.text}}</p>
+            <small>Posted by <strong>{{post.created_by}}</strong></small>
+            <small class="geoLocation"><br><span ng-if="post.location">{{post.location}}</span> <span class="pull-right"> <time am-time-ago="post.created_at"></time></span></small>
+        </div>
+    </div>
+</div>
